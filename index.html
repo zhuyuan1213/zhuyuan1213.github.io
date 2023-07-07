@@ -154,6 +154,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-调用约定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="调用约定"><a href="#调用约定" class="headerlink" title="调用约定"></a>调用约定</h1><p>函数的调用约定就是函数调用时的一些规则:</p>
+<p>1、函数参数的压栈顺序</p>
+<p>2、由调用者还是被调用者把参数弹出（内平栈&#x2F;外平栈）</p>
+<p>3、产生函数修饰名的方法</p>
+<h2 id="cdcel"><a href="#cdcel" class="headerlink" title="_cdcel"></a>_cdcel</h2><p>是C和C++默认调用约定：</p>
+<p>1、从右至左依此压栈</p>
+<p>2、由调用者维护参数内存栈（外平栈）</p>
+<p>3、修饰名格式是在原函数名前加一个下划线，如_function</p>
+<h2 id="stdcall"><a href="#stdcall" class="headerlink" title="_stdcall"></a>_stdcall</h2><p>C和C++标准调用方式，Win32 API中的函数一般是这种调用方式：</p>
+<p>1、从右至左依此压栈</p>
+<p>2、被调用者维护参数内存栈（内平栈）</p>
+<p>3、修饰名格式是在原函数名前加一个下划线，原函数名后加一个@，如_function@</p>
+<h2 id="fastcall"><a href="#fastcall" class="headerlink" title="_fastcall"></a>_fastcall</h2><p>fastcall就是快速调用约定，通过寄存器传递参数，相比于去内存栈中读取参数，fastcall更快：</p>
+<p>1、使用ECX和EDX寄存器传递前两个DWORD或者更小的参数，其他参数依此从右往左依此入栈</p>
+<p>2、被调用者维护参数内存栈（内平栈）</p>
+<p>3、修饰名格式是在原函数名前和后各加一个@，并且在后面跟函数参数的字节数，如@function@16</p>
+<h2 id="thiscall"><a href="#thiscall" class="headerlink" title="_thiscall"></a>_thiscall</h2><p>C++类成员函数缺省的调用约定，在C++中，由于类成员有一个this指针的特殊性，thiscall必须特殊处理：</p>
+<p>1、参数从右至左依此入栈</p>
+<p>2、参数个数不确定的调用由调用者负责管理内存栈（外平栈），否则由被调用者管理内存栈（内平栈）；如果参数个数确定，this指针通过ecx寄存器传给调用函数，否则在所有参数入栈后，this指针入栈传给被调用者</p>
+<h2 id="nakedcall"><a href="#nakedcall" class="headerlink" title="_nakedcall"></a>_nakedcall</h2><p>一般很少使用这种调用约定，在nakedcall调用约定下，编译器不会给这种函数增加初始化和清理代码，更特殊的是，你不能用return返回返回值，只能用插入汇编返回结果。</p>
+<h2 id="pascal"><a href="#pascal" class="headerlink" title="_pascal"></a>_pascal</h2><p>pascal调用约定和上面几种不同：</p>
+<p>1、从左至右依此入栈</p>
+<p>2、被调用者管理内存栈（内平栈）</p>
+<h1 id="Linux下X86-64调用约定"><a href="#Linux下X86-64调用约定" class="headerlink" title="Linux下X86-64调用约定"></a>Linux下X86-64调用约定</h1><p>Linux 的 x64 下也只有一种函数调用约定，即 __fastcall </p>
+<p>1、一个函数在调用时，如果参数个数小于等于6个，前6个参数是从左至右依此存放在寄存器</p>
+<p>RDI，RSI ，RDX ， RCX ， R8 ， R9中，剩下的参数从右至左依此入栈</p>
+<p>2、如果参数个数大于 6 个时，前 6 个参数是从左至右依次存放于 RDI，RSI，RDX，RCX，R8，R9 寄存器里面，剩下的参数通过栈传递，从右至左顺序入栈；</p>
+<p>3、对于系统调用，使用 R10 代替 RCX</p>
+<p>4、XMM0 ~ XMM7 用于传递浮点参数</p>
+<p>5、被调用函数的返回值是64位以内（包括64位）的整形或指针时，则返回值会被存放于 RAX，如果返回值是128位的，则高64位放入 RDX</p>
+<p>6、如果返回值是浮点值，则返回值存放在XMM0</p>
+<p>7、调用者 (caller) 负责清理栈，被调用函数 (callee) 不用清栈</p>
+<p>8、对于 R8～R15 寄存器，我们可以使用 r8, r8d, r8w, r8b 分别代表 r8 寄存器的64位、低32位、低16位和低8位。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/07/%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-延迟绑定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
