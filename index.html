@@ -154,54 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230707125142819.png" alt="image-20230707125142819"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/07/1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-延迟绑定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -215,9 +167,9 @@
 <p>延迟绑定是动态链接器用来减少程序启动时间的一种技术。延迟绑定就是在函数第一次被调用的时候再和函数地址绑定</p>
 <p>GOT 全称是全局偏移量表（<strong>G</strong>lobal <strong>O</strong>ffset <strong>T</strong>able），用来存储外部函数在内存的确切地址。GOT 存储在数据段（Data Segment）内，可以在程序运行中被修改。</p>
 <p>PLT 全称是程序链接表（<strong>P</strong>rocedure <strong>L</strong>inkage <strong>T</strong>able），PLT 存储在代码段（Code Segment）内，在运行之前就已经确定并且不会被修改，所以 PLT 并不会知道程序运行时动态链接库被加载的确切位置。PLT 表内存储的入口点就是GOT表对应的条目地址。</p>
-<h3 id="首次调用"><a href="#首次调用" class="headerlink" title="首次调用:"></a>首次调用:</h3><p><img src="C:\Users\hubin\Pictures\延迟绑定.png"></p>
+<h3 id="首次调用"><a href="#首次调用" class="headerlink" title="首次调用:"></a>首次调用:</h3><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A.png"></p>
 <p>第一次调用 func 函数时，首先会跳转到 PLT 执行 <code>jmp *(func@got)</code>，由于该函数没被调用过，func@got 中的值不是 func 函数的地址，而是 PLT 中的 “preapre resolver” 指令的地址，所以会跳转到 “preapre resolver” 执行，接着会调用 _dl_runtime_resolve 解析 func 函数的地址，并将该函数真正的地址填充到 func@got，最后跳转到 func 函数继续执行代码。</p>
-<h3 id="非首次调用："><a href="#非首次调用：" class="headerlink" title="非首次调用："></a>非首次调用：</h3><p><img src="C:\Users\hubin\Pictures\第二次.png"></p>
+<h3 id="非首次调用："><a href="#非首次调用：" class="headerlink" title="非首次调用："></a>非首次调用：</h3><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/%E7%AC%AC%E4%BA%8C%E6%AC%A1.png"></p>
 <p>当再次调用 func 函数时，由于 func@got 中已填充正确的函数地址，此时执行 PLT 中的 <code>jmp *(func@got)</code> 即可成功跳转到 func 函数中执行。</p>
 
       
@@ -232,148 +184,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/07/07/%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/07/hello/">hello</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/07/hello/" class="archive-article-date">
-  	<time datetime="2023-07-07T00:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/./hello/%E6%A0%88.png" alt="栈"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/07/hello/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一章   基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>第一章   基础知识</strong></p>
-<p>*<em>1.1</em>***机器语言:**<strong>机器语言是机器指令的集合。机器指令就是一台机器可以正确执行的指令。电子计算机的指令是一列二进制数字。</strong></p>
-<p><strong>1.2<strong><strong>汇编语言的产生：</strong></strong>汇编语言的主体是汇编指令。汇编指令是机器指令的助记符。</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img"></strong></p>
-<p><strong>用汇编语言编写程序的工作：</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png" alt="img"></strong></p>
-<p><strong>1.3<strong><strong>汇编语言的组成</strong></strong>：由汇编指令（有对应的机器码），伪指令(由编译器执行)，其他符号（如+,-,*等由编译器识别）共同组成。汇编语言的核心是汇编指令，决定了汇编语言的特性。</strong></p>
-<p><strong>1.4<strong><strong>存储器：</strong></strong>CPU****工作必须像它提供指令和数据。指令和数据在存储器中存放就是我们说的内存。</strong></p>
-<p><strong>1</strong><strong>.5****指令和数据:</strong> <strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" alt="img"></strong></p>
-<p>*<em>1.6</em>***存储单元:**<strong>存储器被划分为多个存储单元。例如:一个存储器有128个存储单元就编号为0~127,可以存储128个byte。一个byte&#x3D;8个二进制位&#x3D;8bit。</strong></p>
-<p><strong>1.7CPU<strong><strong>对存储器的读写：</strong></strong>CPU****从内存中读数据，首先要指定存储单元的地址，也就是说要先确定它要读取哪一个存储单元中的数据。</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png" alt="img"></strong></p>
-<p><strong>总线分为三种:</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image010.png" alt="img"></strong></p>
-<p>*<em>1.8</em>**<em>地址总线:<strong><strong>10</strong></strong>位二进制数可以表示2的10次方个。最小数位0，最大数位1023。</em>*</p>
-<p><strong>一个CPU有N根地址线，则CPU的地址总线的宽度位N，这样的CPU最多可以寻找2的N次方个内存单元。</strong></p>
-<p>*<em>1.9</em>**<em>数据总线:<strong><strong>16</strong></strong>跟数据线一次可以传送16位数据，所以一次可以传送89D8H；同理，8跟数据线一次只能传送8位数据，如果要传送16位数据，则要传送两次。</em>*</p>
-<p>*<em>1.10</em>**<em>控制总线:<strong><strong>CPU</strong></strong>有多少种控制总线，就意味着CPU提供了对外部器件的多少种控制。控制总线的宽度决定了CPU对外部器件的控制能力。</em>*</p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png" alt="img"></strong></p>
-<p><strong>1.11****内存地址空间:</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png" alt="img"></strong></p>
-<p><strong>1.12****主板:</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image016.png" alt="img"></strong></p>
-<p>*<em>1.13</em>***接口卡:**<strong>所有的可用程序控制设备都必须受到CPU的控制。CPU不能对外部设备进行直接控制，但是插在扩展卡槽上的接口卡可以。都通过总线和CPU相连。</strong></p>
-<p><strong>1.14****各类存储器芯片:分为两大类,随机存储器（RAM）和只读存储器（ROM）。前者必须带电储存，关机后存储的内容丢失，后者只能读取不能写入，关机后内容不会丢失。</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png" alt="img"></strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image020.png" alt="img"></strong></p>
-<p>*<em>1.15</em>***内存地址空间:**<strong>不同存储器在物理上是独立的器件。但是都和CPU的总线相连，CPU对他们进行读或写的时候通过控制线发出内存读写命令。</strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img"></strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image024.png" alt="img"></strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png" alt="img"></strong></p>
-<p><strong><img src="file:///C:/Users/hubin/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png" alt="img"></strong>**<br>**</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/04/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%20%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">展开全文 >></a>
         </p>
       
 
